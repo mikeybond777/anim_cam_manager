@@ -1,5 +1,6 @@
 from PySide2.QtWidgets import QSpinBox
 
+
 class FrameSpinbox(QSpinBox):
     def __init__(self, is_in_frame):
 

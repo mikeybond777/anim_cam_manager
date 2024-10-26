@@ -1,8 +1,9 @@
+from PySide2.QtGui import QFont
+from PySide2.QtWidgets import QCheckBox, QLabel
+
 from anim_cam_manager_utils import get_camera_name, get_keyframes
 from frame_spinbox import FrameSpinbox
 
-from PySide2.QtGui import QFont
-from PySide2.QtWidgets import QCheckBox, QLabel
 
 class CameraEntry():
     def __init__(self, camera_full_name):

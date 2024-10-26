@@ -1,12 +1,13 @@
-from anim_cam_manager_utils import extend_keyframe, duplicate_camera, set_keyframe_all_attr, copy_keyframes, get_camera_name
+import maya.cmds as cmds
+from PySide2.QtWidgets import QCheckBox, QGroupBox, QVBoxLayout, QLabel, QLineEdit, QGridLayout, QSpinBox, QWidget, \
+    QPushButton
+
+from anim_cam_manager_utils import extend_keyframe, duplicate_camera, set_keyframe_all_attr, copy_keyframes, \
+    get_camera_name
 from cam_entry import CameraEntry
 from frame_spinbox import FrameSpinbox
 
-import maya.cmds as cmds
-from PySide2.QtWidgets import QApplication, QCheckBox, QGroupBox, QVBoxLayout, QLabel, QLineEdit, QGridLayout, \
-    QSpinBox, QWidget, QPushButton
 
-# Main UI.
 class AnimaticCamManager(QWidget):
     def __init__(self, scale):
 
@@ -16,6 +17,7 @@ class AnimaticCamManager(QWidget):
         self.scale = scale
         self.setWindowTitle("Animatic Camera Window")
         self.warnings = []
+        self.uber_cam = None
 
         # Params concerning the board.
         self.camera_entries = list()
@@ -108,9 +110,9 @@ class AnimaticCamManager(QWidget):
         # Reset the list.
         self.spinbox_widgets = list()
 
-        for i, camera_entry in enumerate(self.camera_entries):
+        for camera_entry in self.camera_entries:
             if camera_entry.to_include_cb.isChecked():
-                for j, widget in enumerate(camera_entry.widgets):
+                for widget in camera_entry.widgets:
                     # Add function to track the colour if the widget is a QSpinBox.
                     if isinstance(widget, FrameSpinbox):
                         self.spinbox_widgets.append(widget)
