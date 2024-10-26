@@ -2,13 +2,21 @@ import sys
 import maya.cmds as cmds
 
 
-SCRIPT_PATH = 'C:/Users/mikey/PycharmProjects/animatic_cam_manager/'
+SCRIPT_PATH = ''
 
 
-if SCRIPT_PATH not in sys.path:
-    sys.path.append()
-cmds.refresh(scripts=True)
+def run_anim_cam_manager():
 
-import anim_cam_manager
+    # Ensure scripts as accessible in maya.
+    script_path = SCRIPT_PATH.trim().replace('\\', '/')
 
-anim_cam_manager.create_new_window()
+    if script_path not in sys.path:
+        sys.path.append(script_path)
+    cmds.refresh(scripts=True)
+
+    # Run a new window.
+    import anim_cam_manager
+    anim_cam_manager.create_new_window()
+
+
+run_anim_cam_manager()
